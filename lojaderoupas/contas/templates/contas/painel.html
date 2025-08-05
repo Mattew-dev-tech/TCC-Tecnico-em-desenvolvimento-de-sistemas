@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel - Loja de Roupas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #6dd5ed, #2193b0);
+            margin: 0;
+            padding: 40px;
+        }
+
+        .painel {
+            background-color: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 28px;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .opcoes {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .opcoes a {
+            background-color: #4a63e7;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .opcoes a:hover {
+            background-color: #3743a4;
+        }
+
+        .emoji {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="painel">
+        <h2>Olá, {{ usuario.username }} 👋</h2>
+        <p>Bem-vindo ao painel da sua loja de roupas.</p>
+
+        <div class="opcoes">
+            <a href="{% url 'cadastrar_roupa' %}">Cadastrar nova roupa</a>
+            <a href="{% url 'ver_roupas' %}"><span class="emoji">📦</span> Ver roupas cadastradas</a>
+            <a href="{% url 'fazer_pedido' %}" class="btn btn-primary">🛒 Fazer Pedido</a>
+            <a href="#"><span class="emoji">🛒</span> Ver pedidos</a>
+            <a href="/logout/"><span class="emoji">🔓</span> Sair</a>
+        </div>
+    </div>
+</body>
+</html>

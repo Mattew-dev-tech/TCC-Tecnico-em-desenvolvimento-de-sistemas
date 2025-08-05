@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Email enviado</title>
+    <style>
+        body {
+            background: #f2f2f2;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Verifique seu e-mail 📧</h2>
+        {% if reset_link %}
+            <p style="margin-top: 20px; color: red;">[Desenvolvimento] Link de redefinição:</p>
+            <a href="{{ reset_link }}">{{ reset_link }}</a>
+        {% endif %}
+
+        <p>Se o e-mail informado estiver cadastrado, enviamos um link para redefinir sua senha.</p>
+        <a href="{% url 'login' %}">Voltar ao login</a>
+    </div>
+</body>
+</html>
+

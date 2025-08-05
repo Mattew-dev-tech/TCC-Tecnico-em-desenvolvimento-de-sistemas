@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Pedidos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .valor {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pedidos</h1>
+        <ul>
+            {% if pedidos %}
+                {% for pedido in pedidos %}
+                    <li>
+                        🛒 <strong>Pedido #{{ pedido.id }}</strong><br>
+                        {{ pedido.nome_produto }} — <span class="valor">R$ {{ pedido.valor }}</span>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li>Nenhum pedido encontrado.</li>
+            {% endif %}
+        </ul>
+        <a href="{% url 'painel' %}">← Voltar ao painel</a>
+    </div>
+</body>
+</html>

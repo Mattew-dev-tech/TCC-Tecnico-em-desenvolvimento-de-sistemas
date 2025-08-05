@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Fazer Pedido</title>
+    <style>
+        body { font-family: Arial; background: #f0f8ff; padding: 30px; }
+        .form-container { background: white; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto; }
+        button { margin-top: 20px; padding: 10px 20px; background: #4169e1; color: white; border: none; border-radius: 5px; }
+        a.botao-secundario {
+            display: inline-block;
+            margin-top: 10px;
+            margin-right: 10px;
+            padding: 10px 20px;
+            background: #ddd;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        a.botao-secundario:hover {
+            background: #bbb;
+        }
+
+        a.sair {
+            background: #f44336;
+            color: white;
+        }
+
+        a.sair:hover {
+            background: #c0392b;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Fazer novo pedido 🛒</h2>
+       <form method="post">
+            {% csrf_token %}
+            {{ formset.management_form }}
+
+            {% if formset.non_form_errors %}
+                <div style="color: red;">
+                    {{ formset.non_form_errors }}
+                </div>
+            {% endif %}
+
+            {% for form in formset %}
+                <div style="margin-bottom: 10px;">
+                    {{ form.as_p }}
+                </div>
+            {% endfor %}
+
+            <button type="submit">Confirmar Pedido</button>
+            <a href="{% url 'painel' %}" class="botao-secundario">← Voltar ao Painel</a>
+            <a href="{% url 'logout' %}" class="botao-secundario sair">Sair</a>
+
+        </form>
+
+    </div>
+</body>
+</html>

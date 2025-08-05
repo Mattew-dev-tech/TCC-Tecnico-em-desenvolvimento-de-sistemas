@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Redefinir senha</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        input {
+            display: block;
+            margin-top: 10px;
+            width: 100%;
+            padding: 8px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            margin-top: 15px;
+            border: none;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Redefinir Senha</h2>
+        <input type="password" name="nova_senha" placeholder="Nova senha" required>
+        <input type="password" name="confirmar_senha" placeholder="Confirmar senha" required>
+        <button type="submit">Alterar senha</button>
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </form>
+</body>
+</html>
+
+

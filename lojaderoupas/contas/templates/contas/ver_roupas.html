@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Roupas Cadastradas</title>
+    <style>
+        /* Estilo da página */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #6dd5ed, #2193b0);
+            margin: 0;
+            padding: 40px;
+        }
+
+        .painel {
+            background-color: white;
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            color: #333;
+            font-size: 26px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .roupa {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .roupa img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        .info strong {
+            display: inline-block;
+            width: 90px;
+            color: #444;
+        }
+
+        .acoes {
+            margin-top: 10px;
+        }
+
+        .botao-editar, .botao-excluir {
+            margin-right: 10px;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .botao-editar {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .botao-excluir {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .voltar {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 10px 20px;
+            background-color: #4a63e7;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .voltar:hover {
+            background-color: #3743a4;
+        }
+
+        .nenhuma {
+            text-align: center;
+            color: #777;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="painel">
+        <h2>Roupas Cadastradas</h2>
+
+        {% if roupas %}
+            {% for roupa in roupas %}
+                <div class="roupa">
+                    {% if roupa.imagem %}
+                        <img src="{{ roupa.imagem.url }}" alt="Imagem da roupa">
+                    {% else %}
+                        <img src="https://via.placeholder.com/100" alt="Sem imagem">
+                    {% endif %}
+                    <div class="info">
+                        <div><strong>Nome:</strong> {{ roupa.nome }}</div>
+                        <div><strong>Preço:</strong> R$ {{ roupa.preco }}</div>
+                        <div><strong>Descrição:</strong> {{ roupa.descricao }}</div>
+                    </div>
+                    <div class="acoes">
+                        <a class="botao-editar" href="{% url 'editar_roupa' roupa.id %}">✏️ Editar</a>
+                        <a class="botao-excluir" href="{% url 'excluir_roupa' roupa.id %}" onclick="return confirm('Tem certeza que deseja excluir?');">🗑️ Excluir</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="nenhuma">Nenhuma roupa cadastrada ainda.</p>
+        {% endif %}
+
+        <a class="voltar" href="{% url 'painel' %}">⬅ Voltar ao painel</a>
+    </div>
+</body>
+</html>
